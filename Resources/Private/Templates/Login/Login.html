@@ -5,7 +5,7 @@
 
 <f:section name="main">
 	<h1 class="page-header">
-		<f:translate key="LLL:EXT:cicregister/Resources/Private/Language/locallang.xml:form-loginController-loginAction-header"/>
+		<f:translate key="form-loginController-loginAction-header"/>
 	</h1>
 
 	<ul class="unstyled flash-messages">
@@ -13,19 +13,19 @@
 
 		<f:if condition="{logoutOccurred}">
 				<li class="well alert-success">
-					<f:translate key="LLL:EXT:cicregister/Resources/Private/Language/locallang.xml:form-loginController-loginAction-logoutMessage"/>
+					<f:translate key="form-loginController-loginAction-logoutMessage"/>
 				</li>
 		</f:if>
 
 		<f:if condition="{loginFailed}">
 			<li class="well alert-error">
-				<f:translate key="LLL:EXT:cicregister/Resources/Private/Language/locallang.xml:form-loginController-loginAction-loginFailedMessage"/>
+				<f:translate key="form-loginController-loginAction-loginFailedMessage"/>
 			</li>
 		</f:if>
 
 		<f:if condition="{loginSuccess}">
 			<li class="well alert-success">
-				<f:translate key="LLL:EXT:cicregister/Resources/Private/Language/locallang.xml:form-loginController-loginAction-loginSuccessMessage"/>
+				<f:translate key="form-loginController-loginAction-loginSuccessMessage"/>
 			</li>
 		</f:if>
 
@@ -34,7 +34,7 @@
 				<f:if condition="{returnMessage}">
 					<strong>{returnMessage}</strong><br/><br />
 				</f:if>
-				<f:translate key="LLL:EXT:cicregister/Resources/Private/Language/locallang.xml:form-loginController-loginAction-loginNotAttemptedMessage"/>
+				<f:translate key="form-loginController-loginAction-loginNotAttemptedMessage"/>
 			</li>
 		</f:if>
 	</ul>
@@ -43,7 +43,7 @@
 		<div class="row">
 			<div class="span4">
 				<div class="input control-group">
-					<label for="user"><f:translate key="LLL:EXT:cicregister/Resources/Private/Language/locallang.xml:form-loginController-allActions-usernameFieldLabel"/></label>
+					<label for="user"><f:translate key="form-loginController-allActions-usernameFieldLabel"/></label>
 					<input tabindex="1" type="text" class="" id="user" name="user" value=""/>
 				</div>
 			</div>
@@ -51,14 +51,14 @@
 		<div class="row">
 			<div class="span4">
 				<div class="input control-group">
-					<label for="pass"><f:translate key="LLL:EXT:cicregister/Resources/Private/Language/locallang.xml:form-loginController-allActions-passwordFieldLabel"/></label>
+					<label for="pass"><f:translate key="form-loginController-allActions-passwordFieldLabel"/></label>
 					<input tabindex="2" type="password" class="" id="pass" name="pass" value=""/>
 				</div>
 				<f:if condition="{loginSettings.allowForgotPassword}">
 					<div class="message">
 						<f:link.action action="forgotPassword">
 							<f:translate
-									key="LLL:EXT:cicregister/Resources/Private/Language/locallang.xml:form-loginController-loginAction-forgotPassword"/>
+									key="form-loginController-loginAction-forgotPassword"/>
 						</f:link.action>
 					</div>
 				</f:if>
