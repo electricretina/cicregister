@@ -225,7 +225,7 @@ page.includeJSFooterlibs {
 }
 
 page.includeJSFooter {
-	colorbox = EXT:cicregister/Resources/Public/Javascript/Jquery-Colorbox-min.js
+	colorbox = EXT:cicregister/Resources/Public/Javascript/jquery.colorbox-min.js
 	bootstrap-button = EXT:cicregister/Resources/Public/Javascript/bootstrap-button.js
 	cicregister = EXT:cicregister/Resources/Public/Javascript/Cicregister.js
 }

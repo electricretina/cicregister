@@ -173,7 +173,7 @@ class LoginController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 
 	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Mvc\Domain\Model\FrontendUserGroup>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup>
 	 * @var array
 	 */
 	protected function getUsergroupRedirectByPriority(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $usergroups,$usergroupRedirectPriority = array()) {
