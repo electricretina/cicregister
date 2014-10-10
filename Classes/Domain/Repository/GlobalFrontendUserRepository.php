@@ -43,7 +43,7 @@ class GlobalFrontendUserRepository extends \TYPO3\CMS\Extbase\Persistence\Reposi
 		// Because we tell the persistence layer that the classname is \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository,
 		// it understands this repository as handling all objects handled by that repository. A bit of a hack, but
 		// it seems to work.
-		return '\\TYPO3\\CMS\\Extbase\\Domain\\Repository\\FrontendUserRepository';
+		return 'TYPO3\\CMS\\Extbase\\Domain\\Repository\\FrontendUserRepository';
 	}
 
 	public function findByUid($uid) {
@@ -52,7 +52,7 @@ class GlobalFrontendUserRepository extends \TYPO3\CMS\Extbase\Persistence\Reposi
 		} else {
 			$query = $this->createQuery();
 			$query->getQuerySettings()->setRespectSysLanguage(FALSE);
-			$query->getQuerySettings()->setRespectEnableFields(FALSE);
+			$query->getQuerySettings()->setIgnoreEnableFields(TRUE);
 			$query->getQuerySettings()->setRespectStoragePage(FALSE);
 			$object = $query
 					->matching(
@@ -66,7 +66,7 @@ class GlobalFrontendUserRepository extends \TYPO3\CMS\Extbase\Persistence\Reposi
 
 	public function countByEmail($email) {
 		$query = $this->createQuery();
-		$query->getQuerySettings()->setRespectEnableFields(FALSE);
+		$query->getQuerySettings()->setIgnoreEnableFields(TRUE);
 		$result = $query->matching($query->logicalAnd($query->equals('email', $email), $query->equals('deleted', 0)))
 				->execute()
 				->count();
@@ -75,7 +75,7 @@ class GlobalFrontendUserRepository extends \TYPO3\CMS\Extbase\Persistence\Reposi
 
 	public function findByEmail($email) {
 		$query = $this->createQuery();
-		$query->getQuerySettings()->setRespectEnableFields(FALSE);
+		$query->getQuerySettings()->setIgnoreEnableFields(TRUE);
 		$result = $query->matching($query->logicalAnd($query->equals('email', $email), $query->equals('deleted', 0)))
 				->execute();
 		return $result;
@@ -83,7 +83,7 @@ class GlobalFrontendUserRepository extends \TYPO3\CMS\Extbase\Persistence\Reposi
 
 	public function findByUsername($username) {
 		$query = $this->createQuery();
-		$query->getQuerySettings()->setRespectEnableFields(FALSE);
+		$query->getQuerySettings()->setIgnoreEnableFields(TRUE);
 		$result = $query->matching($query->logicalAnd($query->equals('username', $username), $query->equals('deleted', 0)))
 				->execute();
 		return $result;

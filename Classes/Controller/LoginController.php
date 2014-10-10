@@ -136,7 +136,7 @@ class LoginController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		// If there isn't one, look at the user for a redirect
 		if(!$foundRedirectTarget) {
 			$user = $this->frontendUserRepository->findOneByUid($this->userData['uid']);
-			if($user->getRedirectPid()) {
+			if($user && $user->getRedirectPid()) {
 				$redirectPageUid = $user->getRedirectPid();
 				$foundRedirectTarget = true;
 			}
@@ -171,10 +171,10 @@ class LoginController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		return $redirectUrl;
 	}
 
-
 	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup>
-	 * @var array
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $usergroups
+	 * @param array $usergroupRedirectPriority
+	 * @return null
 	 */
 	protected function getUsergroupRedirectByPriority(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $usergroups,$usergroupRedirectPriority = array()) {
 		// Make an array of group uids
@@ -326,6 +326,7 @@ class LoginController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		if ($password != NULL && is_array($password) && $password[0] != false) {
 			$frontendUser->setPassword($password[0]);
+			$this->frontendUserRepository->update($frontendUser);
 		}
 		$this->flashMessageContainer->add(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('controller-login-pwChanged', 'cicregister'));
 		$this->forward('login');
@@ -373,6 +374,9 @@ class LoginController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 */
 	protected function getErrorFlashMessage() {
 		$msg = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('controller-login-genericActionMessage-'. $this->actionMethodName, 'cicregister');
+		if(!$msg) {
+			return parent::getErrorFlashMessage();
+		}
 		return $msg;
 	}
 

@@ -17,6 +17,9 @@ namespace CIC\Cicregister\Service;
  *  GNU General Public License for more details.
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Exception;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
@@ -46,13 +49,21 @@ class UrlValidator implements \TYPO3\CMS\Core\SingletonInterface {
 		}
 
 		// Validate the URL:
-		if ($this->isRelativeUrl($url) || $this->isInCurrentDomain($url) || $this->isInLocalDomain($url)) {
+		if ($this->canRedirectToUrl($url)) {
 			return $url;
 		}
 
 		// URL is not allowed
 		\TYPO3\CMS\Core\Utility\GeneralUtility::sysLog(sprintf(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('service-URLValidator-noValidRedirectUrl', 'cicregister'), $url), 'felogin', \TYPO3\CMS\Core\Utility\GeneralUtility::SYSLOG_SEVERITY_WARNING);
 		return '';
+	}
+
+	/**
+	 * @param $url
+	 * @return bool
+	 */
+	protected function canRedirectToUrl($url) {
+		return $this->isRelativeUrl($url) || $this->isInCurrentDomain($url) || $this->isInLocalDomain($url) || $this->isOfConfiguredAllowableDomain($url);
 	}
 
 	/**
@@ -83,7 +94,7 @@ class UrlValidator implements \TYPO3\CMS\Core\SingletonInterface {
 				// Removes the last path segment and slash sequences like /// (if given):
 				$path = preg_replace('#/+[^/]*$#', '', $parsedUrl['path']);
 
-				$cObj = new tslib_cObj();
+				$cObj = new ContentObjectRenderer();
 
 				$localDomains = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 					'domainName',
@@ -103,6 +114,38 @@ class UrlValidator implements \TYPO3\CMS\Core\SingletonInterface {
 			}
 		}
 		return $result;
+	}
+
+	/**
+	 * Determines whether the URL is in a list of allowed redirect source domains
+	 * from typoscript.
+	 *
+	 * @param $url
+	 * @return bool
+	 */
+	protected function isOfConfiguredAllowableDomain($url) {
+		$out = false;
+		if($configuredDomains = $GLOBALS['TSFE']->tmpl->setup['plugin.']['tx_cicregister.']['settings.']['login.']['allowedRedirectSourceDomains']) {
+			$allowedDomains = GeneralUtility::trimExplode(',', $configuredDomains);
+			if(count($allowedDomains) && $d = $this->getDomainFromUrl($url)) {
+				$out = in_array($d, $allowedDomains);
+			}
+		}
+		return $out;
+	}
+
+	/**
+	 * @param $url
+	 * @return string
+	 * @throws \TYPO3\CMS\Extbase\Exception
+	 */
+	protected function getDomainFromUrl($url) {
+		$out = '';
+		$found = preg_match('~https?://?([^/]+)~', $url, $matches);
+		if ($found && $matches[1]) {
+			$out = strtolower($matches[1]);
+		}
+		return $out;
 	}
 
 	/**
