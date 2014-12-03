@@ -1,31 +1,49 @@
+## Define custom categories
+# customsubcategory=groupids=Group IDs
+# customsubcategory=settings=Settings
+# customsubcategory=pages=Pages
 plugin.tx_cicregister {
  	view {
+ 		# cat=plugin.tx_cicregister/file/010; type=string; label=Template root folder path;
  		templateRootPath = EXT:cicregister/Resources/Private/Templates/
+ 		# cat=plugin.tx_cicregister/file/011; type=string; label=Partials folder path;
  		partialRootPath = EXT:cicregister/Resources/Private/Partials/
+ 		# cat=plugin.tx_cicregister/file/012; type=string; label=Layouts folder path;
  		layoutRootPath = EXT:cicregister/Resources/Private/Layouts/
  	}
  	settings {
 		pids {
+		    # cat=plugin.tx_cicregister/pages; type=int+; label=Page ID for edit view;
 			editView = 85
+			# cat=plugin.tx_cicregister/pages; type=int+; label=Page ID for new view;
 			newView = 86
+			# cat=plugin.tx_cicregister/pages; type=int+; label=Page ID of Folder with front-end users;
 			storagePid = 4
+			# cat=plugin.tx_cicregister/pages; type=int+; label=Page ID with login form;
 			loginView = 74
+			# cat=plugin.tx_cicregister/pages; type=int+; label=Page ID with logout button;
 			logoutView= 90
 		}
 		uids {
+			# cat=plugin.tx_cicregister/groupids; type=int+; label=Global Group ID;
 			globalGroupId = 2
+			# cat=plugin.tx_cicregister/groupids; type=int+; label=Validated Group ID;
 			validatedGroupId = 4
+			# cat=plugin.tx_cicregister/groupids; type=int+; label=Unvalidated Group ID;
 			unvalidatedGroupId = 3
 		}
 		strings {
-			siteName = Main Dish & Son
+			# cat=plugin.tx_cicregister/settings; type=string; label=Site Name;
+			siteName = Colournow.ca
 		}
 		email {
-			senderEmail = typo3@grandma.cichq.com
-			senderName = Main Dish & Sons
+			# cat=plugin.tx_cicregister/settings; type=string; label=Sender Email address;
+			senderEmail = info@colournow.ca
+			# cat=plugin.tx_cicregister/settings; type=string; label=Sender's name for emails;
+			senderName = Colournow.ca
 			subjects {
-				forgotPassword = Main Dish & Son: Password Recovery
-				validateAccount = Main Dish & Son: Please Confirm Your Registration
+				forgotPassword = Colournow: Password Recovery
+				validateAccount = Colournow: Please Confirm Your Registration
 			}
 			create {
 				message = Thank you for creating a new account!
@@ -40,6 +58,7 @@ plugin.tx_cicregister {
 		behaviors {
 
 		}
+		# cat=plugin.tx_cicregister/settings; type=int+; label=EID Number ajax;
 		eidTypeNum = 1325527064
  	}
  }

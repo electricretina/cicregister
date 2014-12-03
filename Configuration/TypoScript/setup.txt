@@ -194,8 +194,9 @@ Tx_Cicregister_JSON_RequestPage {
         disableAllHeaderCode = 1
         xhtml_cleaning = 0
         admPanel = 0
-            debug = 0
-            no_cache = 1
+        #if debug is on the json returned is invalid and the system breaks down.
+        debug = 0
+        no_cache = 1
         additionalHeaders = Content-type:application/json
     }
 	10 = USER_INT
@@ -228,7 +229,7 @@ page.includeCSS {
 }
 
 page.includeJSFooterlibs {
-	jquery = //ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js
+	jquery = //ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.js
 	jquery.external = 1
 }
 

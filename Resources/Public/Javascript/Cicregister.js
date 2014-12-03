@@ -96,20 +96,28 @@
     CicregisterForm.prototype.hideLoading = function() {
       return $('#cicregister-submitButton').button('reset');
     };
+    
+    CicregisterForm.prototype.showAlert = function(msg){
+    	return $('.lead').after("<p>"+msg+"</p>");
+    	return $.colorbox.resize();
+    };
 
     CicregisterForm.prototype.submitForm = function(event) {
-      var result,
+    	var result,
         _this = this;
       result = false;
       this.showLoading();
       $.ajax(this.postURL, {
-        dataType: 'JSON',
         data: this.serializeForm(),
+        dataType: 'JSON',
         success: function(response) {
           result = _this.submitFormSuccess(response);
           if (!response.redirect) return _this.hideLoading();
         },
-        error: function(response) {
+        error: function(response,textStatus,errorThrown) {
+        	console.log(response);
+        	console.log(textStatus);
+        	console.log(errorThrown);
           return result = _this.submitFormError(response);
         }
       });
