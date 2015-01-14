@@ -1,5 +1,6 @@
 <?php
 namespace CIC\Cicregister\Controller;
+
 /***************************************************************
  *  Copyright notice
  *  (c) 2011 Zachary Davis <zach

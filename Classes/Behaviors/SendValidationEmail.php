@@ -62,7 +62,7 @@ class SendValidationEmail extends AbstractBehavior implements BehaviorInterface 
 		$recipients = array($frontendUser->getEmail() => $frontendUser->getName());
 		$sender = array($conf['senderEmail'] => $conf['senderName']);
 		$subject = $conf['validateSubject'];
-		$templateName = 'ValidateEmail.html';
+		$templateName = $conf['template'];
 		$variables = $conf['variables'];
 		$variables['frontendUser'] = $frontendUser;
 		$variables['validationKey'] = $this->emailValidator->generateKey($frontendUser);

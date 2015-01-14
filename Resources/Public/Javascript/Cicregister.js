@@ -8,7 +8,7 @@
       this.elementClasses = {
         inputWithError: 'f3-form-error'
       };
-      this.postURL = '?type=1325527064&tx_cicregister_create[action]=create&tx_cicregister_create[format]=json';
+      this.postURL = '?type=1325527064&tx_cicregister_create[action]=create&tx_cicregister_create[controller]=FrontendUserJSON&tx_cicregister_create[format]=json';
       this.element = $(this.element);
       this.initEvents();
     }

@@ -52,11 +52,12 @@ plugin.tx_cicregister {
 			}
 			frontendUser {
 				validationEmailSend {
-					CIC\Cicregister\Behaviors\SendValidationEmail = 1
+					CIC\Cicregister\Behaviors\SendValidationEmail = {$plugin.tx_cicregister.settings.email.sendValidationEmail}
 					CIC\Cicregister\Behaviors\SendValidationEmail {
 						senderEmail = {$plugin.tx_cicregister.settings.email.senderEmail}
 						senderName = {$plugin.tx_cicregister.settings.email.senderName}
 						validateSubject = {$plugin.tx_cicregister.settings.email.subjects.validateAccount}
+						template = {$plugin.tx_cicregister.settings.email.validationEmailTemplate}
 						variables {
 							message = {$plugin.tx_cicregister.settings.email.validationEmailSend.message}
 							siteName = {$plugin.tx_cicregister.settings.strings.siteName}
@@ -73,15 +74,29 @@ plugin.tx_cicregister {
 					CIC\Cicregister\Behaviors\SyncToSalesforce = 0
 				}
 				created {
-					CIC\Cicregister\Behaviors\SendValidationEmail = 1
+					CIC\Cicregister\Behaviors\SendValidationEmail = {$plugin.tx_cicregister.settings.email.sendCreationEmail}
 					CIC\Cicregister\Behaviors\SendValidationEmail {
 						senderEmail = {$plugin.tx_cicregister.settings.email.senderEmail}
 						senderName = {$plugin.tx_cicregister.settings.email.senderName}
 						validateSubject = {$plugin.tx_cicregister.settings.email.subjects.validateAccount}
+						template = {$plugin.tx_cicregister.settings.email.validationEmailTemplate}
 						variables {
 							message = {$plugin.tx_cicregister.settings.email.create.message}
 							siteName = {$plugin.tx_cicregister.settings.strings.siteName}
 							validatePid = {$plugin.tx_cicregister.settings.pids.editView}
+						}
+					}
+					CIC\Cicregister\Behaviors\SendNotificationEmail = {$plugin.tx_cicregister.settings.email.sendNotificationEmail}
+					CIC\Cicregister\Behaviors\SendNotificationEmail{
+						senderEmail = {$plugin.tx_cicregister.settings.email.senderEmail}
+						senderName = {$plugin.tx_cicregister.settings.email.senderName}
+						subject = {$plugin.tx_cicregister.settings.email.notificationEmailSubject}
+						receiverEmail = {$plugin.tx_cicregister.settings.email.userAdminEmail} 
+						receiverName = {$plugin.tx_cicregister.settings.email.userAdminName}
+						template = {$plugin.tx_cicregister.settings.email.notificationEmailTemplate}
+						variables{
+							message= {$plugin.tx_cicregister.settings.email.notificationMessage}
+							siteName = {$plugin.tx_cicregister.settings.strings.siteName}
 						}
 					}
 					CIC\Cicregister\Behaviors\AddFlashMessage = 0
@@ -187,6 +202,27 @@ config.tx_extbase {
 	}
 }
 
+
+
+
+config {
+	# The validation email links to the edit profile page, which is often set so that it is
+	# only visible to a logged in user. This rather obscure Typoscript property makes it
+	# possible for Extbase to link to an access restricted page. Moreover, we tend to think
+	# that this is a good site-wide default. Why would you want to show an anonymous user
+	# text that wasn't linked? Better not to show the content element at all, but to let it
+	# renderd the same accross contexts.
+	typolinkLinkAccessRestrictedPages = NONE
+}
+
+page.includeCSS {
+	89179817291 = EXT:cicregister/Resources/Public/Stylesheet/Cicregister.css
+	89179817291.if{
+		value = {$plugin.tx_cicregister.settings.includeBaseCss}
+		equals = 1
+	}
+}
+
 Tx_Cicregister_JSON_RequestPage = PAGE
 Tx_Cicregister_JSON_RequestPage {
     typeNum = {$plugin.tx_cicregister.settings.eidTypeNum}
@@ -201,7 +237,7 @@ Tx_Cicregister_JSON_RequestPage {
     }
 	10 = USER_INT
 	10 {
-		userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+	    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
 		extensionName = Cicregister
 		vendorName = CIC
 		pluginName = Create
@@ -214,29 +250,27 @@ Tx_Cicregister_JSON_RequestPage {
 	}
 }
 
-config {
-	# The validation email links to the edit profile page, which is often set so that it is
-	# only visible to a logged in user. This rather obscure Typoscript property makes it
-	# possible for Extbase to link to an access restricted page. Moreover, we tend to think
-	# that this is a good site-wide default. Why would you want to show an anonymous user
-	# text that wasn't linked? Better not to show the content element at all, but to let it
-	# renderd the same accross contexts.
-	typolinkLinkAccessRestrictedPages = NONE
-}
-
-page.includeCSS {
-	89179817291 = EXT:cicregister/Resources/Public/Stylesheet/Cicregister.css
-}
-
 page.includeJSFooterlibs {
 	jquery = //ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.js
 	jquery.external = 1
+	jquery.if{
+		value = {$plugin.tx_cicregister.settings.includeJquery}
+		equals = 1
+	}
 }
 
 page.includeJSFooter {
 	colorbox = EXT:cicregister/Resources/Public/Javascript/jquery.colorbox-min.js
+	colorbox.if{
+		value = {$plugin.tx_cicregister.settings.includeColorBox}
+		equals = 1
+	}
 	bootstrap-button = EXT:cicregister/Resources/Public/Javascript/bootstrap-button.js
-	cicregister = EXT:cicregister/Resources/Public/Javascript/Cicregister.js
+	bootstrap-button.if{
+		value = {$plugin.tx_cicregister.settings.includeBootstrapButton}
+		equals = 1
+	}
+	cicregister = {$plugin.tx_cicregister.settings.cicregisterJS}
 }
 
 plugin.tx_cicregister._CSS_DEFAULT_STYLE (

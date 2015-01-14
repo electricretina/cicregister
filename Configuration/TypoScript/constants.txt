@@ -2,6 +2,7 @@
 # customsubcategory=groupids=Group IDs
 # customsubcategory=settings=Settings
 # customsubcategory=pages=Pages
+# customsubcategory=text=Text
 plugin.tx_cicregister {
  	view {
  		# cat=plugin.tx_cicregister/file/010; type=string; label=Template root folder path;
@@ -12,8 +13,19 @@ plugin.tx_cicregister {
  		layoutRootPath = EXT:cicregister/Resources/Private/Layouts/
  	}
  	settings {
+ 		# cat=plugin.tx_cicregister/settings/02; type=boolean; label=Include JQuery library;
+ 		includeJquery = 1
+ 		# cat=plugin.tx_cicregister/settings/04; type=boolean; label = Include base CSS file;
+ 		includeBaseCss = 1
+ 		# cat=plugin.tx_cicregister/settings/06; type=boolean; label = Include the ColorBox JS;
+ 		includeColorBox = 1
+ 		# cat=plugin.tx_cicregister/settings/08; type=boolean; label=Include the bootstrap-button JS;
+ 		includeBootstrapButton = 1
+ 		# cat=plugin.tx_cicregister/settings/10; type=string; label=Path to the registration JS file;
+ 		cicregisterJS = EXT:cicregister/Resources/Public/Javascript/Cicregister.js
+ 		
 		pids {
-		    # cat=plugin.tx_cicregister/pages; type=int+; label=Page ID for edit view;
+		    # cat=plugin.tx_cicregister/pages; type=int+; label=Page ID for edit/validation view;
 			editView = 85
 			# cat=plugin.tx_cicregister/pages; type=int+; label=Page ID for new view;
 			newView = 86
@@ -33,24 +45,44 @@ plugin.tx_cicregister {
 			unvalidatedGroupId = 3
 		}
 		strings {
-			# cat=plugin.tx_cicregister/settings; type=string; label=Site Name;
+			# cat=plugin.tx_cicregister/settings/01; type=string; label=Site Name;
 			siteName = Colournow.ca
 		}
 		email {
-			# cat=plugin.tx_cicregister/settings; type=string; label=Sender Email address;
-			senderEmail = info@colournow.ca
-			# cat=plugin.tx_cicregister/settings; type=string; label=Sender's name for emails;
-			senderName = Colournow.ca
+			# cat=plugin.tx_cicregister/settings; type=string; label=System Sender Email address(from);
+			senderEmail = 
+			# cat=plugin.tx_cicregister/settings; type=string; label=System Sender's name for emails (from name);
+			senderName = 
+			# cat=plugin.tx_cicregister/settings/40; type=boolean; label=Send the account validation email;
+			sendValidationEmail = 1
+			# cat=plugin.tx_cicregister/settings/42; type=string; label = Validation Email Template;
+			validationEmailTemplate = ValidateEmail.html
+			# cat=plugin.tx_cicregister/settings/44; type=boolean; label=Send the account creation email;
+			sendCreationEmail = 1
 			subjects {
-				forgotPassword = Colournow: Password Recovery
-				validateAccount = Colournow: Please Confirm Your Registration
+				forgotPassword = Password Recovery
+				validateAccount = Please Confirm Your Registration
 			}
 			create {
+				# cat=plugin.tx_cicregister/text; type=string; label=Simple message added to the top of the welcome email;
 				message = Thank you for creating a new account!
 			}
 			validationEmailSend {
+				# cat=plugin.tx_cicregister/text; type=string; label=Simple message added to the top of the validation email;
 				message = Almost done!
 			}
+			# cat=plugin.tx_cicregister/settings/50; type=boolean; label=Send a Notification Email;
+			sendNotificationEmail = 0
+			# cat=plugin.tx_cicregister/settings/52; type=string; label=Notification Email Temaplate File;
+			notificationEmailTemplate = NotificationEmail.html
+			# cat=plugin.tx_cicregister/settings/53; type=string; label=Notifcation Email Subject;
+			notificationEmailSubject = A new member has been created
+			# cat=plugin.tx_cicregister/settings/54; type=string; label=Notification Email Message;
+			notificationMessage = New Member
+			# cat=plugin.tx_cicregister/settings/55; type=string; label=Users Admin Name;
+			userAdminName = 
+			# cat=plugin.tx_cicregister/settings/60; type=string; label=Users Admin Email;
+			userAdminEmail =
 		}
 		decorators {
 
