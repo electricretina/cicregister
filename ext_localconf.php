@@ -62,10 +62,10 @@ $TYPO3_CONF_VARS['FE']['eID_include']['cicregister-getUsername'] = 'EXT:cicregis
 	'CIC.'.$_EXTKEY,
 	'ValidateEmail',
 	array(
-		'FrontendUser' => 'sendValidationEmail,validateUser'
+		'FrontendUser' => 'new,create,validateUser'
 	),
 	array(
-		'FrontendUser' => 'sendValidationEmail,validateUser'
+		'FrontendUser' => 'new,create,validateUser'
 	)
 );
 

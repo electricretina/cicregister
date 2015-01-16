@@ -70,6 +70,7 @@ class FrontendUserController extends FrontendUserBaseController {
 	public function validateUserAction($key, $redirect = '') {
 		$emailValidatorService = $this->objectManager->get('CIC\\Cicregister\\Service\\HashValidator');
 		$frontendUser = $emailValidatorService->validateKey($key);
+		//TODO forward user to the login page instead of the new page.
 		$forward = 'new'; // logged in users will get forward from new to edit; otherwise, users will be asked to signup.
 		if ($frontendUser instanceof \CIC\Cicregister\Domain\Model\FrontendUser) {
 			// Decorate and persist the user.
