@@ -83,8 +83,7 @@ plugin.tx_cicregister {
 						variables {
 							message = {$plugin.tx_cicregister.settings.email.create.message}
 							siteName = {$plugin.tx_cicregister.settings.strings.siteName}
-							validatePid = {$plugin.tx_cicregister.settings.pids.validateEmailPid}
-							redirect = {$plugin.tx_cicregister.settings.redirect}
+							validatePid = {$plugin.tx_cicregister.settings.pids.editView}
 						}
 					}
 					CIC\Cicregister\Behaviors\SendNotificationEmail = {$plugin.tx_cicregister.settings.email.sendNotificationEmail}

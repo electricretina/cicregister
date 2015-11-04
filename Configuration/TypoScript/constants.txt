@@ -19,38 +19,34 @@ plugin.tx_cicregister {
  		includeBaseCss = 1
  		# cat=plugin.tx_cicregister/settings/06; type=boolean; label = Include the ColorBox JS;
  		includeColorBox = 1
- 		# cat=plugin.tx_cicregister/settings/12; type=string; label=URI to redirect to after validation;
- 		redirect = 
- 		
+ 		# cat=plugin.tx_cicregister/settings/08; type=boolean; label=Include the bootstrap-button JS;
  		includeBootstrapButton = 1
  		# cat=plugin.tx_cicregister/settings/10; type=string; label=Path to the registration JS file;
  		cicregisterJS = EXT:cicregister/Resources/Public/Javascript/Cicregister.js
  		
 		pids {
-		    # cat=plugin.tx_cicregister/pages/04; type=int+; label=Page ID for edit/validation view;
-			editView = 
-			# cat=plugin.tx_cicregister/pages/02; type=int+; label=Page ID for new view;
-			newView = 
+		    # cat=plugin.tx_cicregister/pages; type=int+; label=Page ID for edit/validation view;
+			editView = 85
+			# cat=plugin.tx_cicregister/pages; type=int+; label=Page ID for new view;
+			newView = 86
 			# cat=plugin.tx_cicregister/pages; type=int+; label=Page ID of Folder with front-end users;
-			storagePid = 
-			# cat=plugin.tx_cicregister/pages/06; type=int+; label=Page ID with login form;
-			loginView = 
-			# cat=plugin.tx_cicregister/pages/08; type=int+; label=Page ID with logout button;
-			logoutView= 
-			# cat=plugin.tx_cicregister/pages/10; type=int+; label=Page ID with the validation plugin;
-			validateEmailPid = 
+			storagePid = 4
+			# cat=plugin.tx_cicregister/pages; type=int+; label=Page ID with login form;
+			loginView = 74
+			# cat=plugin.tx_cicregister/pages; type=int+; label=Page ID with logout button;
+			logoutView= 90
 		}
 		uids {
 			# cat=plugin.tx_cicregister/groupids; type=int+; label=Global Group ID;
-			globalGroupId = 
+			globalGroupId = 2
 			# cat=plugin.tx_cicregister/groupids; type=int+; label=Validated Group ID;
-			validatedGroupId = 
+			validatedGroupId = 4
 			# cat=plugin.tx_cicregister/groupids; type=int+; label=Unvalidated Group ID;
-			unvalidatedGroupId = 
+			unvalidatedGroupId = 3
 		}
 		strings {
 			# cat=plugin.tx_cicregister/settings/01; type=string; label=Site Name;
-			siteName = 
+			siteName = Colournow.ca
 		}
 		email {
 			# cat=plugin.tx_cicregister/settings; type=string; label=System Sender Email address(from);

@@ -68,10 +68,8 @@ class HashValidator implements \TYPO3\CMS\Core\SingletonInterface {
 		if($uid) {
 			$frontendUser = $this->frontendUserRepository->findByUid($uid);
 		}
-        t3lib_div::devLog('frontenduser:'.$frontendUser,'cicregister',0);
 		if(($frontendUser instanceof \CIC\Cicregister\Domain\Model\FrontendUser) && $rand) {
 			$confirmKey = $this->generateKey($frontendUser,$rand);
-            t3lib_div::devLog('key:'.$key.' / confirm:'.$confirmKey,'cicregister',0);
 			if($confirmKey == $key) return $frontendUser;
 		} else {
 			return false;
@@ -91,7 +89,6 @@ class HashValidator implements \TYPO3\CMS\Core\SingletonInterface {
 		$base = $this->salt . $frontendUser->getUid() . $rand . $frontendUser->getEmail();
 		$hash = md5($base);
 		$key = $hash . '-' . $frontendUser->getUid().'-'.$rand;
-        t3lib_div::devLog('key generated:'.$key,'cicregister:hashvalidator',0);
 		return $key;
 	}
 

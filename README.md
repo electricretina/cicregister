@@ -55,6 +55,11 @@ with the new users first and last name and their email.
 If you don't need the jquery library you can keep it from being included 
 by unchecking the *Include JQuery Library* checkbox.
 
+### Bootstrap-Button
+If you don't end up using bootstrap and therefore don't need the 
+associated Javascript file then you can keep it from being included
+by unchecking the *Include Bootstrap Button JS* checkbox. 
+
 ### Base CICRegister CSS
 The CICRegister CSS file contains all the necessary styles for the
 colorbox overlay so you will usually want to keep that. But if you
