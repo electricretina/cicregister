@@ -1,38 +1,92 @@
+## Define custom categories
+# customsubcategory=groupids=Group IDs
+# customsubcategory=settings=Settings
+# customsubcategory=pages=Pages
+# customsubcategory=text=Text
 plugin.tx_cicregister {
  	view {
+ 		# cat=plugin.tx_cicregister/file/010; type=string; label=Template root folder path;
  		templateRootPath = EXT:cicregister/Resources/Private/Templates/
+ 		# cat=plugin.tx_cicregister/file/011; type=string; label=Partials folder path;
  		partialRootPath = EXT:cicregister/Resources/Private/Partials/
+ 		# cat=plugin.tx_cicregister/file/012; type=string; label=Layouts folder path;
  		layoutRootPath = EXT:cicregister/Resources/Private/Layouts/
  	}
  	settings {
+ 		# cat=plugin.tx_cicregister/settings/02; type=boolean; label=Include JQuery library;
+ 		includeJquery = 1
+ 		# cat=plugin.tx_cicregister/settings/04; type=boolean; label = Include base CSS file;
+ 		includeBaseCss = 1
+ 		# cat=plugin.tx_cicregister/settings/06; type=boolean; label = Include the ColorBox JS;
+ 		includeColorBox = 1
+ 		# cat=plugin.tx_cicregister/settings/12; type=string; label=URI to redirect to after validation;
+ 		redirect = 
+ 		
+ 		includeBootstrapButton = 1
+ 		# cat=plugin.tx_cicregister/settings/10; type=string; label=Path to the registration JS file;
+ 		cicregisterJS = EXT:cicregister/Resources/Public/Javascript/Cicregister.js
+ 		
 		pids {
-			editView = 85
-			newView = 86
-			storagePid = 4
-			loginView = 74
-			logoutView= 90
+		    # cat=plugin.tx_cicregister/pages/04; type=int+; label=Page ID for edit/validation view;
+			editView = 
+			# cat=plugin.tx_cicregister/pages/02; type=int+; label=Page ID for new view;
+			newView = 
+			# cat=plugin.tx_cicregister/pages; type=int+; label=Page ID of Folder with front-end users;
+			storagePid = 
+			# cat=plugin.tx_cicregister/pages/06; type=int+; label=Page ID with login form;
+			loginView = 
+			# cat=plugin.tx_cicregister/pages/08; type=int+; label=Page ID with logout button;
+			logoutView= 
+			# cat=plugin.tx_cicregister/pages/10; type=int+; label=Page ID with the validation plugin;
+			validateEmailPid = 
 		}
 		uids {
-			globalGroupId = 2
-			validatedGroupId = 4
-			unvalidatedGroupId = 3
+			# cat=plugin.tx_cicregister/groupids; type=int+; label=Global Group ID;
+			globalGroupId = 
+			# cat=plugin.tx_cicregister/groupids; type=int+; label=Validated Group ID;
+			validatedGroupId = 
+			# cat=plugin.tx_cicregister/groupids; type=int+; label=Unvalidated Group ID;
+			unvalidatedGroupId = 
 		}
 		strings {
-			siteName = Main Dish & Son
+			# cat=plugin.tx_cicregister/settings/01; type=string; label=Site Name;
+			siteName = 
 		}
 		email {
-			senderEmail = typo3@grandma.cichq.com
-			senderName = Main Dish & Sons
+			# cat=plugin.tx_cicregister/settings; type=string; label=System Sender Email address(from);
+			senderEmail = 
+			# cat=plugin.tx_cicregister/settings; type=string; label=System Sender's name for emails (from name);
+			senderName = 
+			# cat=plugin.tx_cicregister/settings/40; type=boolean; label=Send the account validation email;
+			sendValidationEmail = 1
+			# cat=plugin.tx_cicregister/settings/42; type=string; label = Validation Email Template;
+			validationEmailTemplate = ValidateEmail.html
+			# cat=plugin.tx_cicregister/settings/44; type=boolean; label=Send the account creation email;
+			sendCreationEmail = 1
 			subjects {
-				forgotPassword = Main Dish & Son: Password Recovery
-				validateAccount = Main Dish & Son: Please Confirm Your Registration
+				forgotPassword = Password Recovery
+				validateAccount = Please Confirm Your Registration
 			}
 			create {
+				# cat=plugin.tx_cicregister/text; type=string; label=Simple message added to the top of the welcome email;
 				message = Thank you for creating a new account!
 			}
 			validationEmailSend {
+				# cat=plugin.tx_cicregister/text; type=string; label=Simple message added to the top of the validation email;
 				message = Almost done!
 			}
+			# cat=plugin.tx_cicregister/settings/50; type=boolean; label=Send a Notification Email;
+			sendNotificationEmail = 0
+			# cat=plugin.tx_cicregister/settings/52; type=string; label=Notification Email Temaplate File;
+			notificationEmailTemplate = NotificationEmail.html
+			# cat=plugin.tx_cicregister/settings/53; type=string; label=Notifcation Email Subject;
+			notificationEmailSubject = A new member has been created
+			# cat=plugin.tx_cicregister/settings/54; type=string; label=Notification Email Message;
+			notificationMessage = New Member
+			# cat=plugin.tx_cicregister/settings/55; type=string; label=Users Admin Name;
+			userAdminName = 
+			# cat=plugin.tx_cicregister/settings/60; type=string; label=Users Admin Email;
+			userAdminEmail =
 		}
 		decorators {
 
@@ -40,6 +94,7 @@ plugin.tx_cicregister {
 		behaviors {
 
 		}
+		# cat=plugin.tx_cicregister/settings; type=int+; label=EID Number ajax;
 		eidTypeNum = 1325527064
  	}
  }

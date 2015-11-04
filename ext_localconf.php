@@ -9,7 +9,7 @@ if (!defined('TYPO3_MODE')) {
 $TYPO3_CONF_VARS['FE']['eID_include']['cicregister-getUsername'] = 'EXT:cicregister/Scripts/GetUsername.php';
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	'CIC.Cicregister',
+	'CIC.'.$_EXTKEY,
 	'Create',
 	array(
 		'FrontendUser' => 'new,create,edit,update,createConfirmation,createConfirmationMustValidate,validateUser',
@@ -23,7 +23,7 @@ $TYPO3_CONF_VARS['FE']['eID_include']['cicregister-getUsername'] = 'EXT:cicregis
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	'CIC.Cicregister',
+	'CIC.'.$_EXTKEY,
 	'Login',
 	array(
 		'Login' => 'dispatch, login, forgotPassword, handleForgotPassword, resetPassword, handleResetPassword',
@@ -35,7 +35,7 @@ $TYPO3_CONF_VARS['FE']['eID_include']['cicregister-getUsername'] = 'EXT:cicregis
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	'CIC.Cicregister',
+	'CIC.'.$_EXTKEY,
 	'Enroll',
 	array(
 		'FrontendUser' => 'enroll,saveEnrollment',
@@ -47,7 +47,7 @@ $TYPO3_CONF_VARS['FE']['eID_include']['cicregister-getUsername'] = 'EXT:cicregis
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	'CIC.Cicregister',
+	'CIC.'.$_EXTKEY,
 	'Button',
 	array(
 		'FrontendUser' => 'button,create',
@@ -59,13 +59,13 @@ $TYPO3_CONF_VARS['FE']['eID_include']['cicregister-getUsername'] = 'EXT:cicregis
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	'CIC.Cicregister',
+	'CIC.'.$_EXTKEY,
 	'ValidateEmail',
 	array(
-		'FrontendUser' => 'sendValidationEmail,validateUser'
+		'FrontendUser' => 'new,create,validateUser'
 	),
 	array(
-		'FrontendUser' => 'sendValidationEmail,validateUser'
+		'FrontendUser' => 'new,create,validateUser'
 	)
 );
 

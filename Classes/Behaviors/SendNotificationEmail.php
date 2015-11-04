@@ -33,7 +33,11 @@ class SendNotificationEmail extends AbstractBehavior implements BehaviorInterfac
 		$settings = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
 		$sender[$conf['senderEmail']] = $conf['senderName'];
 		$receiver[$conf['receiverEmail']] = $conf['receiverName'];
-		$this->sendTemplateEmail($receiver, $sender, $conf['subject'], $conf['template'], array('frontendUser' => $frontendUser, 'settings' => $settings));
+		$variables = $conf['variables'];
+		//$variables['frontendUser'] = \TYPO3\CMS\Extbase\Utility\ArrayUtility::convertObjectToArray($frontendUser);
+		$variables['frontendUser'] = $frontendUser;
+		$variables['settings'] = $settings;
+		$this->sendTemplateEmail($receiver, $sender, $conf['subject'], $conf['template'], $variables);
 	}
 }
 

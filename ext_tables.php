@@ -4,32 +4,32 @@ if (!defined('TYPO3_MODE')) {
 }
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-	$_EXTKEY,
+	'CIC.'.$_EXTKEY,
 	'Create',
 	'CICRegister: Create/Edit Account'
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-	$_EXTKEY,
+	'CIC.'.$_EXTKEY,
 	'Enroll',
 	'CICRegister: Group Enrollment'
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-	$_EXTKEY,
+	'CIC.'.$_EXTKEY,
 	'Login',
 	'CICRegister: Login'
 );
 
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-	$_EXTKEY,
+	'CIC.'.$_EXTKEY,
 	'Button',
 	'CICRegister: Create Account Button'
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-	$_EXTKEY,
+	'CIC.'.$_EXTKEY,
 	'ValidateEmail',
 	'CICRegister: Email Validation'
 );
