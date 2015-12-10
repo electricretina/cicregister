@@ -38,11 +38,11 @@ class FrontendUserJSONController extends FrontendUserBaseController {
 		$behaviorResponse = $this->createAndPersistUser($frontendUser);
 		$results = new \stdClass;
 		$results->hasErrors = false;
-
+		\TYPO3\CMS\Core\Utility\GeneralUtility::devlog('behavior response class: '.get_class($behaviorResponse),'feuserJson',0);
 		switch(get_class($behaviorResponse)) {
 			case 'CIC\\Cicregister\\Behaviors\\Response\\RenderAction':
 				$viewObjectName = 'CIC\\Cicregister\\View\\FrontendUserJSON\\' . $behaviorResponse->getValue();
-				$view = $this->objectManager->create($this->defaultViewObjectName);
+				$view = $this->objectManager->get($this->defaultViewObjectName);
 				$this->setViewConfiguration($view);
 				$view->setControllerContext($this->controllerContext);
 				$view->assign('settings', $this->settings); // same with settings injection.

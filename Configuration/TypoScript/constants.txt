@@ -23,6 +23,8 @@ plugin.tx_cicregister {
  		includeBootstrapButton = 1
  		# cat=plugin.tx_cicregister/settings/10; type=string; label=Path to the registration JS file;
  		cicregisterJS = EXT:cicregister/Resources/Public/Javascript/Cicregister.js
+ 		# cat=plugin.tx_cicregister/settings/12; type=string; label=Path to the Base CSS file;
+ 		cicregisterCss = EXT:cicregister/Resources/Public/Stylesheet/Cicregister.css
  		
 		pids {
 		    # cat=plugin.tx_cicregister/pages; type=int+; label=Page ID for edit/validation view;

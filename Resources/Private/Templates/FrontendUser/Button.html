@@ -1,7 +1,16 @@
-<f:link.page pageUid="{viewSettings.formTargetPid}" rel="#cicregister-lightbox" class="cicregister-lightbox-trigger btn">Register</f:link.page>
-<div style="display: none;">
-	<div id="cicregister-lightbox">
-		<f:render partial="CreateForm" arguments="{_all}" />
-	</div>
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers">
+	
+	<f:layout name="Default" />
+	
+	<f:section name="main">
+		<f:link.page pageUid="{viewSettings.formTargetPid}" rel="#cicregister-lightbox" class="cicregister-lightbox-trigger btn">Register</f:link.page>
+		<div style="display: none;">
+			<div id="cicregister-lightbox">
+				<f:render partial="CreateForm" arguments="{_all}" />
+			</div>
+		</div>
+	</f:section>
 </div>
-

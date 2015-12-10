@@ -12,6 +12,16 @@ plugin.tx_cicregister {
 		}
 	}
 	settings {
+		includeColorBox = {$plugin.tx_cicregister.settings.includeColourBox}
+		includeJquery = {$plugin.tx_cicregister.settings.includeJquery}
+		includeBaseCss = {$plugin.tx_cicregister.settings.includeBaseCss}
+		includeBootstrapButton = {$plugin.tx_cicregister.settings.includeBootstrapButton}
+		cicregisterJS = {$plugin.tx_cicregister.settings.cicregisterJS}
+		cicregisterCss = {$plugin.tx_cicregister.settings.cicregisterCss}
+		colorbox = EXT:cicregister/Resources/Public/Javascript/jquery.colorbox-min.js
+		bootstrap-button = EXT:cicregister/Resources/Public/Javascript/bootstrap-button.js
+		jquery = //ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.js
+		
 		views {
 			new {
 				disableAjax = 0

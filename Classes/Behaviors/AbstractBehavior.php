@@ -83,7 +83,7 @@ class AbstractBehavior {
 	 * @return boolean TRUE on success, otherwise false
 	 */
 	protected function sendTemplateEmail(array $recipient, array $sender, $subject, $templateName, array $variables = array()) {
-		$emailView = $this->objectManager->create('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
+		$emailView = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
 		$emailView->setFormat('html');
 		$extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
 		$templateRootPath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($extbaseFrameworkConfiguration['view']['templateRootPaths'][10]);
@@ -92,7 +92,7 @@ class AbstractBehavior {
 		$emailView->assignMultiple($variables);
 		$emailBody = $emailView->render();
 
-		$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('t3lib_mail_Message');
+		$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\Mail\MailMessage');
 		$message->setTo($recipient)
 				->setFrom($sender)
 				->setSubject($subject);
@@ -102,7 +102,8 @@ class AbstractBehavior {
 
 		// HTML Email
 		$message->setBody($emailBody, 'text/html');
-
+		
+		\TYPO3\CMS\Core\Utility\GeneralUtility::devlog('mail message:'.print_r($message,true),'cicregister');
 		$message->send();
 		return $message->isSent();
 	}
